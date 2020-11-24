@@ -19,3 +19,12 @@ let triangleArea = 0.5 * Float(leg1) * Float(leg2)
 
 let hypotenuse = ((pow(Decimal(leg1), 2) + pow(Decimal(leg2), 2)) as NSDecimalNumber).doubleValue.squareRoot()
 let perimetr = leg1 + leg2 + Int(hypotenuse)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Bank Deposit task
+
+let deposit = 65000
+let interestRate = 5
+let years = 5
+
+let finalDeposit = ((Double(deposit) * 0.05) * Double(years)) + Double(deposit)
