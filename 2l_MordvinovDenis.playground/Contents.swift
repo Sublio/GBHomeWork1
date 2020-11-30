@@ -50,6 +50,7 @@ for number in array {
 
 
 func generateArrayOfFib(number: Int) -> [UInt]{
+    // WARN: This function works only till 91 element
     var sequence:[UInt] = [0, 1]
     for _ in 0...number{
         let first = sequence[sequence.count - 2]
@@ -59,4 +60,4 @@ func generateArrayOfFib(number: Int) -> [UInt]{
     return sequence
 }
 
-generateArrayOfFib(number: 100)
+generateArrayOfFib(number: 91)
