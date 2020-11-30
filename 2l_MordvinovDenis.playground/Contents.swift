@@ -50,7 +50,7 @@ for number in array {
 
 
 func generateArrayOfFib(number: Int) -> [UInt]{
-    // WARN: This function works only till 91 element
+    // WARN: This function works only till 91 element after that - UInt overflow (Wich means Int64 can't handle it)
     var sequence:[UInt] = [0, 1]
     for _ in 0...number{
         let first = sequence[sequence.count - 2]
@@ -61,3 +61,14 @@ func generateArrayOfFib(number: Int) -> [UInt]{
 }
 
 generateArrayOfFib(number: 91)
+
+// Prime numbers:
+
+var primes: [Int] = []
+
+for n in 2...100 {
+    if primes.allSatisfy({ n % $0 != 0 }) {
+        primes.append(n)
+    }
+}
+print(primes)
