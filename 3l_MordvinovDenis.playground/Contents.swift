@@ -70,4 +70,19 @@ var bmw = SportCar(brand: "BMW", year: 2000, trunk: 1500, engineOn: false, windo
 var truckCar1 = TrunkCar(brand: "Ford", year: 2020, trunk: 5000, engineOn: false, windowsOpened: false, trunk_filled_space: 0)
 var ferrari = SportCar(brand: "Ferrari", year: 2005, trunk: 800, engineOn: false, windowsOpened: false, trunk_filled_space: 0)
 
+print (bmw.engineOn)
+print(bmw.brand)
+print(bmw.windowsOpened)
+print(bmw.trunk_filled_space)
+print(truckCar1.trunk)
+
+
+bmw.perfromAction(action: .openWindow)
+print(bmw.windowsOpened)
+
+ferrari.perfromAction(action: .turnEngineOn)
+print(ferrari.engineOn)
+
+
+
 
