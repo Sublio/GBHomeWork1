@@ -5,8 +5,6 @@ enum CarActions {
     case turnEngineOff
     case openWindow
     case closeWindow
-    case loadInTrunk(value: Double)
-    case unloadFromTrunk(value:Double)
     
 }
 
@@ -28,13 +26,15 @@ struct TrunkCar {
                 self.windowsOpened = true
             case . closeWindow:
                 self.windowsOpened = false
-            case .loadInTrunk(value: 1000.00):
-                self.trunk_filled_space += 1000.00
-            case .unloadFromTrunk(value: 1000.00):
-                self.trunk_filled_space -= 1000.00
-            default:
-                print("Default case called")
         }
+    }
+    
+    mutating func loadInTrunk(value:Double){
+        self.trunk_filled_space += value
+    }
+    
+    mutating func unloadFromTrunk(value: Double){
+        self.trunk_filled_space -= value
     }
 }
 
@@ -46,6 +46,14 @@ struct SportCar {
     var windowsOpened: Bool
     var trunk_filled_space: Double
     
+    mutating func loadInTrunk(value:Double){
+        self.trunk_filled_space += value
+    }
+    
+    mutating func unloadFromTrunk(value: Double){
+        self.trunk_filled_space -= value
+    }
+    
     mutating func perfromAction(action:CarActions){
         switch action {
             case .turnEngineOff:
@@ -56,12 +64,6 @@ struct SportCar {
                 self.windowsOpened = true
             case . closeWindow:
                 self.windowsOpened = false
-            case .loadInTrunk(value: 1000.00):
-                self.trunk_filled_space += 1000.00
-            case .unloadFromTrunk(value: 1000.00):
-                self.trunk_filled_space -= 1000.00
-            default:
-                print("Default case called")
         }
     }
 }
@@ -70,18 +72,16 @@ var bmw = SportCar(brand: "BMW", year: 2000, trunk: 1500, engineOn: false, windo
 var truckCar1 = TrunkCar(brand: "Ford", year: 2020, trunk: 5000, engineOn: false, windowsOpened: false, trunk_filled_space: 0)
 var ferrari = SportCar(brand: "Ferrari", year: 2005, trunk: 800, engineOn: false, windowsOpened: false, trunk_filled_space: 0)
 
-print (bmw.engineOn)
-print(bmw.brand)
-print(bmw.windowsOpened)
+bmw.loadInTrunk(value: 200)
 print(bmw.trunk_filled_space)
-print(truckCar1.trunk)
 
-
+bmw.unloadFromTrunk(value: 200)
+print(bmw.trunk_filled_space)
+bmw.perfromAction(action: .turnEngineOn)
+print(bmw.engineOn)
 bmw.perfromAction(action: .openWindow)
 print(bmw.windowsOpened)
 
-ferrari.perfromAction(action: .turnEngineOn)
-print(ferrari.engineOn)
 
 
 
