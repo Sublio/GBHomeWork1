@@ -74,27 +74,3 @@ class SportCar: Car {
         }
     }
 }
-
-var trunkCar = TrunkCar()
-trunkCar.action(action: .setSpeed(speed: 20))
-trunkCar.action(action: .closeWindow)
-trunkCar.action(action: .setGear(gear: 2))
-print(trunkCar.currentSpeed)
-print(trunkCar.windowOpened!) // Force unwrap as I know that this property was set
-print(trunkCar.gear)
-
-var sportCar = SportCar()
-
-sportCar.action(action: .setSpeed(speed: 100))
-sportCar.action(action: .turnOnSpeedLimiter)
-sportCar.action(action: .turnEngineOn)
-
-print (sportCar.currentSpeed)
-print(sportCar.isSpeedLimiterOn)
-print(sportCar.isEngineOn!) // Force unwrao as I 100% know that this  property was set
-
-
-
-
-
-
