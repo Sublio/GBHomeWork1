@@ -1,12 +1,4 @@
 import Foundation
-import UIKit
-
-struct Element: Equatable {
-    
-//    static func ==(first: Element, second: Element) -> Bool {
-//        return first == second
-//    }
-}
 
 
 struct Queue<Element>{
