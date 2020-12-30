@@ -1,56 +1,64 @@
 import Foundation
 
-
-struct Queue<Element>{
-    var currentQueueOfElements: [Element] = []
+// guard let
+class Cars {
+    var cars:[String] = ["Ferrari", "Porshe", "Citroen"]
     
-    init(initWithElements:[Element]) {
-        self.currentQueueOfElements = initWithElements
-    }
-    
-    
-    mutating func pushOnCurrentQueue(_ elememt: Element) {
-        currentQueueOfElements.append(elememt)
-    }
-    
-    // This may be optional as currentQueue might be empty
-    mutating func removeLastFromQueue() -> Element?  {
-        return currentQueueOfElements.removeLast()
-    }
-    
-    subscript (index: Int) -> Bool? {
-        if currentQueueOfElements.indices.contains(index){
-          print("Found an element in array")
-          return true
-        }else {
-            print("There is no element in array")
+    func retrieveCarByIndex(index:Int)->String?{
+        guard index >= 0 && index < cars.count else {
+            print("Asked index is out of bounds")
             return nil
         }
+        return cars[index]
     }
-}
+ }
 
- func filterQueue(queue:[Int], predicate: (Int) -> Bool) -> [Int] {
-    var tmpArray = [Int]()
-    
-    for element in queue {
-        if predicate(element){
-            tmpArray.append(element)
+
+let car = Cars()
+car.retrieveCarByIndex(index: 10)
+
+// Throwable
+
+struct User {
+    enum ValidationError: Error {
+        case emptyName
+        case nameToShort(nameLength: Int)
+    }
+
+    let name: String
+
+    init(name: String) throws {
+        guard !name.isEmpty else {
+            throw ValidationError.emptyName
         }
+        guard name.count > 2 else {
+            throw ValidationError.nameToShort(nameLength: name.count)
+        }
+
+        self.name = name
     }
-    
-    return tmpArray
-    
 }
 
-var queue = Queue(initWithElements: [1,2,3,4,6])
+let user = try User(name: "Antoine van der Lee")
 
-let divideByThree: (Int) -> Bool = { (element: Int) -> Bool in
-    return element % 3 == 0
+do {
+    let user = try User(name: "Tt")
+    print("Created user with name \(user.name)")
+} catch User.ValidationError.emptyName {
+    print("User creation failed with error: empty name")
+} catch User.ValidationError.nameToShort(let nameLenght) {
+    print ("User name is too short: \(nameLenght)")
 }
 
-print(queue.currentQueueOfElements)
 
-filterQueue(queue: queue.currentQueueOfElements, predicate: divideByThree )
+do {
+    let user = try User(name: "")
+    print("Created user with name \(user.name)")
+} catch User.ValidationError.emptyName {
+    print("User creation failed with error: empty name")
+} catch User.ValidationError.nameToShort(let nameLenght) {
+    print ("User name is too short: \(nameLenght)")
+}
 
-let result = queue[5]
+
 
